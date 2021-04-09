@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityMember"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="member group of"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:background="#8a4700"
+        android:textColor="#fff"
+        />
+
+    <TextView
+        android:id="@+id/title_activity_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="blackpink"
+        android:textSize="32dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:background="#85008a"
+        android:textColor="#fff"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activitymember_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        />
+
+
+
+</LinearLayout>

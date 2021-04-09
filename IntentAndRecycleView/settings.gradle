@@ -1,0 +1,2 @@
+rootProject.name='Intent And Recycle View'
+include ':app'
