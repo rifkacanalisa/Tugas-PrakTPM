@@ -104,10 +104,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/group_list_share"
-                        android:text="Share"
+                        android:text="Share Text"
                         android:textSize="9dp"
                         android:textAlignment="center"
                         android:background="#00ff4c"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -145,6 +146,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:text="Red Velvet"
+                android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:textColor="@color/black"

@@ -146,10 +146,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:id="@+id/member_share"
-                    android:text="Share"
+                    android:text="Share text"
                     android:textSize="9dp"
                     android:textAlignment="center"
                     android:background="#00ff4c"
+                    android:textColor="@color/black"
                     />
 
             </LinearLayout>

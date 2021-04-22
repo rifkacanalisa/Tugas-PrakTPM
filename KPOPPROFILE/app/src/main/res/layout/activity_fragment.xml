@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentActivity">
+    tools:context=".MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -20,7 +20,8 @@
         app:menu="@menu/navigation"
         android:layout_alignParentBottom="true"
         android:background="#447300ff"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="#ff0000"
+        app:itemTextColor="#ff0000"
         />
 
 
