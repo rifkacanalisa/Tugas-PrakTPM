@@ -34,7 +34,9 @@
                 android:textColor="#000"
                 android:gravity="center"
                 android:padding="1dp"
-                android:textSize="18sp"
+                android:textSize="14sp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
