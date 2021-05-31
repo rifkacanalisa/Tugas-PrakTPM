@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,7 @@ import com.example.bukukas.database.DataPenjualan;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainContact.view{
+public class MainActivity extends AppCompatActivity implements MainContact.view {
 
     private AppDatabase appDatabase;
     private MainPresenter mainPresenter;
@@ -50,17 +51,19 @@ public class MainActivity extends AppCompatActivity implements MainContact.view{
 
         //read data
         mainPresenter.readData(appDatabase);
+
+        btnSubmit.setOnClickListener(this::onClick);
     }
 
     @Override
     public void successAdd() {
-        Toast.makeText(this,"Berhasil Menambahkan Data",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Berhasil Menambahkan Data", Toast.LENGTH_SHORT).show();
         mainPresenter.readData(appDatabase);
     }
 
     @Override
     public void successDelete() {
-        Toast.makeText(this,"Berhasil Menghapus Data",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show();
         mainPresenter.readData(appDatabase);
     }
 
@@ -81,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements MainContact.view{
     @Override
     public void editData(DataPenjualan item) {
         etTanggal.setText(item.getTanggal());
-        etPemasukan.setText(item.getPemasukan());
-        etPengeluaran.setText(item.getPengeluaran());
+        etPemasukan.setText(item.getPemasukan() + "");
+        etPengeluaran.setText(item.getPengeluaran() + "");
         id = item.getId();
         edit = true;
         btnSubmit.setText("Edit Data");
@@ -91,47 +94,46 @@ public class MainActivity extends AppCompatActivity implements MainContact.view{
     @Override
     public void deleteData(DataPenjualan item) {
         AlertDialog.Builder builder;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-        } else{
+        } else {
             builder = new AlertDialog.Builder(this);
         }
         builder.setTitle("Menghapus Data").setMessage("Anda yakin ingin menghapus data ini?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                resetForm();
-                mainPresenter.deleteData(item, appDatabase);
-            }
-        })
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        resetForm();
+                        mainPresenter.deleteData(item, appDatabase);
+                    }
+                })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_dialer)
+                .setIcon(R.drawable.ic_baseline_delete_24)
                 .show();
-
     }
-
 
 
     @Override
     public void onClick(View v) {
-        if (v == btnSubmit){
-            if(etTanggal.getText().toString().equals("") || etPemasukan.getText().toString().equals("")
-                    || etPengeluaran.getText().toString().equals("")){
-                Toast.makeText(this,"Data tidak boleh kosong",Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            if(!edit){
-                mainPresenter.insertData(etTanggal.getText().toString(), Integer.parseInt(etPemasukan.getText().toString()), Integer.parseInt(etPengeluaran.getText().toString()), appDatabase);
+        if (v == btnSubmit) {
+            if (etTanggal.getText().toString().equals("") || etPemasukan.getText().toString().equals("")
+                    || etPengeluaran.getText().toString().equals("")) {
+                Toast.makeText(this, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show();
             } else {
-                mainPresenter.editData(id, etTanggal.getText().toString(), Integer.parseInt(etPemasukan.getText().toString()), Integer.parseInt(etPengeluaran.getText().toString()), appDatabase);
-                edit = false;
+                if (!edit) {
+                    mainPresenter.insertData(etTanggal.getText().toString(), Integer.parseInt(etPemasukan.getText().toString()), Integer.parseInt(etPengeluaran.getText().toString()), appDatabase);
+                } else {
+                    mainPresenter.editData(id, etTanggal.getText().toString(), Integer.parseInt(etPemasukan.getText().toString()), Integer.parseInt(etPengeluaran.getText().toString()), appDatabase);
+                    edit = false;
+                }
+                resetForm();
             }
-            resetForm();
+            Log.d("test", "click btn submit masuk");
         }
     }
 }

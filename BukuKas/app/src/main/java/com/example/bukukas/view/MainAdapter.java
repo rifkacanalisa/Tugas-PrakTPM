@@ -1,6 +1,7 @@
 package com.example.bukukas.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,21 +38,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.viewHolder holder, int position) {
         final DataPenjualan item = list.get(position);
-        holder.tvID.setText(item.getId());
+        holder.tvID.setText(item.getId()+"");
         holder.tvTanggal.setText(item.getTanggal());
-        holder.tvPemasukanKotor.setText(item.getPemasukan());
-        holder.tvPengeluaran.setText(item.getPengeluaran());
+        holder.tvPemasukanKotor.setText(item.getPemasukan()+"");
+        holder.tvPengeluaran.setText(item.getPengeluaran()+"");
         int pemasukanKotor, pengeluaran, pemasukan;
         pemasukanKotor = item.getPemasukan();
         pengeluaran = item.getPengeluaran();
         pemasukan = pemasukanKotor - pengeluaran;
-        holder.tvPemasukan.setText(pemasukan);
+        holder.tvPemasukan.setText(pemasukan+"");
 
         if(pemasukan > 0){
-            holder.cardView.setCardBackgroundColor(Integer.parseInt("#1aff00"));
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#98ff8c"));
         }
         else {
-            holder.cardView.setCardBackgroundColor(Integer.parseInt("#ff0000"));
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#ff8c8c"));
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
